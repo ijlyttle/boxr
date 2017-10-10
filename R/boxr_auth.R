@@ -139,13 +139,15 @@ box_auth <- function(client_id = "", client_secret = "", interactive = TRUE,
       base_url  = "https://app.box.com/api/oauth2"
     )
 
-  box_token <- httr::oauth2.0_token(
+  box_token <- httr::with_verbose(
+    httr::oauth2.0_token(
       box_endpoint,
       box_app,
       use_oob   = getOption("httr_oob_default"),
       cache     = cache,
       ...
     )
+  )
 
   if (!exists("box_token"))
     stop("Login at box.com failed; unable to connect to API.")
@@ -303,4 +305,17 @@ box_auth_on_attach <- function(auth_on_attach = FALSE) {
     )
   }
 }
+
+boxr_server_auth <- function(secrets, scope = NULL, sub = NULL) {
+  
+  endpoint <- httr::oauth_endpoint(
+    authorize = "authorize",
+    access    = "token",
+    base_url  = "https://app.box.com/api/oauth2"
+  )
+  
+  httr::oauth_service_token(endpoint, secrets, scope, sub)
+
+}
+
 
