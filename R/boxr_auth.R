@@ -139,6 +139,8 @@ box_auth <- function(client_id = "", client_secret = "", interactive = TRUE,
       base_url  = "https://app.box.com/api/oauth2"
     )
 
+  print(cache)
+  
   box_token <- httr::oauth2.0_token(
       box_endpoint,
       box_app,
