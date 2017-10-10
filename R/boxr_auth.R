@@ -149,6 +149,7 @@ box_auth <- function(client_id = "", client_secret = "", interactive = TRUE,
 
   print(box_token)
   print(cache)
+  print(exists("box_token"))
   
   if (!exists("box_token"))
     stop("Login at box.com failed; unable to connect to API.")
