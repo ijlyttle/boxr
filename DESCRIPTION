@@ -31,7 +31,9 @@ Imports:
     rio (>= 0.5.18),
     mime,
     utils,
-    stats
+    stats,
+    openssl,
+    rlang
 Suggests:
     testthat,
     knitr,
