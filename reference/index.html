@@ -116,7 +116,7 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-authorizing-with-box" class="hasAnchor"><a href="#section-authorizing-with-box" class="anchor"></a>Authorizing with Box</h2>
+          <h2 id="section-authorizing-to-box" class="hasAnchor"><a href="#section-authorizing-to-box" class="anchor"></a>Authorizing to Box</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -125,19 +125,19 @@
         <td>
           <p><code><a href="box_auth.html">box_auth()</a></code> </p>
         </td>
-        <td><p>Authenticate a box.com Account</p></td>
+        <td><p>Obtain a Box token</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_fresh_auth.html">box_fresh_auth()</a></code> </p>
         </td>
-        <td><p>Reauthorise a Problematic box.com connection</p></td>
+        <td><p>Obtain a fresh Box token</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_auth_on_attach.html">box_auth_on_attach()</a></code> </p>
         </td>
-        <td><p>Authenticate box.com account automatically</p></td>
+        <td><p>Obtain a Box token automatically</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -151,26 +151,25 @@
         <td>
           <p><code><a href="box_setwd.html">box_setwd()</a></code> <code><a href="box_setwd.html">box_getwd()</a></code> </p>
         </td>
-        <td><p>Get/Set Default box.com directory/folder</p></td>
+        <td><p>Get/set Box default working-directory</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_dir_create.html">box_dir_create()</a></code> </p>
         </td>
-        <td><p>Create a new box.com folder</p></td>
+        <td><p>Create a Box directory</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_ls.html">box_ls()</a></code> </p>
         </td>
-        <td><p>Obtain a data.frame describing the contents of a box.com folder</p></td>
+        <td><p>List files in a Box directory</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_fetch.html">box_fetch()</a></code> <code><a href="box_fetch.html">box_push()</a></code> </p>
         </td>
-        <td><p>Recursive, Directory-wide Operations to Synchronize Local and box.com
-directories</p></td>
+        <td><p>Download/upload directories from/to Box</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -184,19 +183,19 @@ directories</p></td>
         <td>
           <p><code><a href="box_dl.html">box_dl()</a></code> <code><a href="box_dl.html">box_ul()</a></code> </p>
         </td>
-        <td><p>Download and upload individual files from box.com</p></td>
+        <td><p>Download/upload files from/to Box</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_previous_versions.html">box_previous_versions()</a></code> </p>
         </td>
-        <td><p>Retrieve details of previous versions of a remote file</p></td>
+        <td><p>Get details of previous versions of a Box file</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_add_description.html">box_add_description()</a></code> </p>
         </td>
-        <td><p>Add a description to a file hosted remotely on box.com</p></td>
+        <td><p>Add description to a Box file</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -210,7 +209,7 @@ directories</p></td>
         <td>
           <p><code><a href="box_delete_file.html">box_delete_file()</a></code> <code><a href="box_delete_file.html">box_delete_folder()</a></code> <code><a href="box_delete_file.html">box_restore_folder()</a></code> <code><a href="box_delete_file.html">box_restore_file()</a></code> </p>
         </td>
-        <td><p>Move files to and from the box.com trash folder</p></td>
+        <td><p>Move files within Box, from/to trash directory</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -224,25 +223,25 @@ directories</p></td>
         <td>
           <p><code><a href="box_read.html">box_read()</a></code> <code><a href="box_read.html">box_read_csv()</a></code> <code><a href="box_read.html">box_read_tsv()</a></code> <code><a href="box_read.html">box_read_json()</a></code> <code><a href="box_read.html">box_read_excel()</a></code> </p>
         </td>
-        <td><p>Read files from box.com into memory as R objects</p></td>
+        <td><p>Read an R object from a Box file</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_write.html">box_write()</a></code> </p>
         </td>
-        <td><p>Write R Objects to Files Remotely Hosted on box.com</p></td>
+        <td><p>Write an R object to a Box file</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_source.html">box_source()</a></code> </p>
         </td>
-        <td><p>Execute R code stored on box.com</p></td>
+        <td><p>Source R code from a Box file</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="box_save.html">box_save()</a></code> <code><a href="box_save.html">box_save_image()</a></code> <code><a href="box_save.html">box_load()</a></code> </p>
         </td>
-        <td><p>Save and load <code>R</code> workspaces via box.com</p></td>
+        <td><p>Download/upload an R workspace from/to a Box file</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -256,7 +255,7 @@ directories</p></td>
         <td>
           <p><code><a href="box_search.html">box_search()</a></code> <code><a href="box_search.html">box_search_files()</a></code> <code><a href="box_search.html">box_search_folders()</a></code> <code><a href="box_search.html">box_search_trash()</a></code> </p>
         </td>
-        <td><p>Search the files in a box.com account</p></td>
+        <td><p>Search Box files</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -270,13 +269,13 @@ directories</p></td>
         <td>
           <p><code><a href="boxr-package.html">boxr-package</a></code> </p>
         </td>
-        <td><p>boxr</p></td>
+        <td><p>boxr: access the Box API</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="boxr_options.html">boxr_options()</a></code> </p>
         </td>
-        <td><p>Display global options for boxr</p></td>
+        <td><p>Get boxr options</p></td>
       </tr><tr>
         
         <td>
@@ -291,7 +290,7 @@ directories</p></td>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-authorizing-with-box">Authorizing with Box</a></li>
+      <li><a href="#section-authorizing-to-box">Authorizing to Box</a></li>
       <li><a href="#section-accessing-directories">Accessing Directories</a></li>
       <li><a href="#section-accessing-files">Accessing Files</a></li>
       <li><a href="#section-using-box-trash">Using Box Trash</a></li>
