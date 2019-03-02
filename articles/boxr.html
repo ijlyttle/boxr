@@ -98,7 +98,7 @@
 <li>The fourth screen should be a confirmation of successful creation, click ‘View Your App’</li>
 </ul>
 <div class="figure">
-<img src="images/four_steps.png" alt="Four steps"><p class="caption">Four steps</p>
+<img src="figures/four_steps.png" alt="Four steps"><p class="caption">Four steps</p>
 </div>
 </div>
 <div id="set-oauth2-parameters" class="section level4">
@@ -106,7 +106,7 @@
 <a href="#set-oauth2-parameters" class="anchor"></a>2. Set OAuth2 Parameters</h4>
 <p>‘View Your App’ will take you to the <strong>Box Developers Console</strong> and where you will be in the <strong>Configuration</strong> sub-menu by default. Scroll down to <strong>OAuth 2.0 Redirect URI</strong> and set it to <code>http://localhost</code> and be sure to click ‘Save Changes’.</p>
 <div class="figure">
-<img src="images/redirect_uri.png" alt="Set Redirect URI"><p class="caption">Set Redirect URI</p>
+<img src="figures/redirect_uri.png" alt="Set Redirect URI"><p class="caption">Set Redirect URI</p>
 </div>
 <p>Keep this browser window open because you will need the client_id and client_secret for the next steps back in <code>R</code>.</p>
 </div>
@@ -157,7 +157,7 @@
 <p>Cloud storage services can complement version control systems for code, which aren’t well suited to large binary files (e.g. databases, .RData, or heaps of pdfs). box explicitly versions binary files, keeping old ones, and making it easy fall back to an older copy.</p>
 <p>boxr provides <em>git style</em> facilities to upload, download, and synchronize the contents of entire local and remote directories. At the time of writing, the box.com API does not support this directly, and so boxr recursively loops through directory structures.</p>
 <div class="figure">
-<img src="https://s3-us-west-2.amazonaws.com/brendan-misc/boxr_console.png" alt="Synch a whole directory!"><p class="caption">Synch a whole directory!</p>
+<img src="figures/boxr-console.png" alt="Synch a whole directory!"><p class="caption">Synch a whole directory!</p>
 </div>
 <ul>
 <li>
@@ -193,7 +193,10 @@
 <a href="#filefolder-ids" class="anchor"></a>File/Folder IDs</h3>
 <p>Are how box.com identifies things. You can find them in an item’s URL:</p>
 <div class="figure">
-<img src="https://s3-us-west-2.amazonaws.com/brendan-misc/file_ids.png" alt="Finding file and folder ids"><p class="caption">Finding file and folder ids</p>
+<img src="figures/box-folder-id.png" alt="Box folder id"><p class="caption">Box folder id</p>
+</div>
+<div class="figure">
+<img src="figures/box-file-id.png" alt="Box file id"><p class="caption">Box file id</p>
 </div>
 </div>
 </div>
@@ -223,7 +226,8 @@
 <a href="#managing-your-client-id-secret" class="anchor"></a>Managing your client id &amp; secret</h4>
 <p>If you don’t like the idea of typing credentials into your console, you can put them straight into <code>~/.Renviron</code> yourself, prior to the R session:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="va">BOX_CLIENT_ID=</span><span class="st">"youridhere"</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="va">BOX_CLIENT_SECRET=</span><span class="st">"yoursecrethere"</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="va">BOX_CLIENT_SECRET=</span><span class="st">"yoursecrethere"</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"> </a></code></pre></div>
 <p>(Note the final blank line).</p>
 </div>
 </div>
