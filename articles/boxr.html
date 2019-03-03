@@ -74,7 +74,7 @@
       <h1>boxr: A high-level R interface for the box.com API</h1>
                         <h4 class="author">Brendan Rocks</h4>
             
-            <h4 class="date">2019-03-02</h4>
+            <h4 class="date">2019-03-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brendan-r/boxr/blob/master/vignettes/boxr.Rmd"><code>vignettes/boxr.Rmd</code></a></small>
       <div class="hidden name"><code>boxr.Rmd</code></div>
@@ -83,10 +83,13 @@
 
     
     
-<div id="getting-set-up" class="section level2">
+<div id="authorization" class="section level2">
 <h2 class="hasAnchor">
-<a href="#getting-set-up" class="anchor"></a>Getting set up</h2>
+<a href="#authorization" class="anchor"></a>Authorization</h2>
 <p>To use boxr, you need to enable API access for your box.com account. The process is slightly annoying. You only need to do it once - it takes around 2 minutes.</p>
+<div id="authorizing-from-a-local-computer" class="section level3">
+<h3 class="hasAnchor">
+<a href="#authorizing-from-a-local-computer" class="anchor"></a>Authorizing from a local computer</h3>
 <div id="create-new-app" class="section level4">
 <h4 class="hasAnchor">
 <a href="#create-new-app" class="anchor"></a>1. ‘Create New App’</h4>
@@ -125,12 +128,43 @@
 <p>If <code><a href="../reference/box_auth.html">box_auth()</a></code> worked successfully, you won’t need to do any of this again, and thanks to the magic of <code>httr</code> everything should <em>just work</em>. Your client_id and client_secret will be securely stored in your R environment variables, your hashed OAuth2.0 token will stored at <code>~/.boxr-oauth</code>, .gitignore’d if necessary, and automatically refreshed when needed. If you would like to automatically authenticate each time the package is loaded, consider running <code><a href="../reference/box_auth_on_attach.html">box_auth_on_attach(TRUE)</a></code>.</p>
 </div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<div id="basic-operations" class="section level3">
+<div id="authorizing-from-a-remote-server" class="section level3">
 <h3 class="hasAnchor">
-<a href="#basic-operations" class="anchor"></a>Basic Operations</h3>
+<a href="#authorizing-from-a-remote-server" class="anchor"></a>Authorizing from a remote server</h3>
+</div>
+</div>
+<div id="basic-operations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#basic-operations" class="anchor"></a>Basic operations</h2>
+<div id="accessing-box-directories-folders" class="section level3">
+<h3 class="hasAnchor">
+<a href="#accessing-box-directories-folders" class="anchor"></a>Accessing Box directories (folders)</h3>
+</div>
+<div id="accessing-box-files" class="section level3">
+<h3 class="hasAnchor">
+<a href="#accessing-box-files" class="anchor"></a>Accessing Box files</h3>
+</div>
+<div id="searching-box" class="section level3">
+<h3 class="hasAnchor">
+<a href="#searching-box" class="anchor"></a>Searching Box</h3>
+</div>
+</div>
+<div id="advanced-operations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#advanced-operations" class="anchor"></a>Advanced operations</h2>
+<div id="using-box-trash" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-box-trash" class="anchor"></a>Using Box trash</h3>
+</div>
+<div id="interacting-with-your-r-session" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interacting-with-your-r-session" class="anchor"></a>Interacting with your R session</h3>
+<hr>
+</div>
+</div>
+<div id="basic-operations-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#basic-operations-1" class="anchor"></a>Basic Operations</h2>
 <p>Aside from file upload/download, boxr provides functions which mirror base R operations for local files.</p>
 <ul>
 <li>
@@ -150,7 +184,6 @@
 <li>
 <code><a href="../reference/box_add_description.html">box_add_description()</a></code> add text descriptions to your files on box.com</li>
 </ul>
-</div>
 <div id="directory-wide-operations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#directory-wide-operations" class="anchor"></a>Directory wide Operations</h3>
@@ -244,8 +277,10 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#getting-set-up">Getting set up</a></li>
-      <li><a href="#usage">Usage</a></li>
+<li><a href="#authorization">Authorization</a></li>
+      <li><a href="#basic-operations">Basic operations</a></li>
+      <li><a href="#advanced-operations">Advanced operations</a></li>
+      <li><a href="#basic-operations-1">Basic Operations</a></li>
       <li><a href="#notes">Notes</a></li>
       <li><a href="#reporting-bugs">Reporting Bugs</a></li>
       </ul>
