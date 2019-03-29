@@ -75,7 +75,7 @@
       <h1>boxr: A high-level R interface for the box.com API</h1>
                         <h4 class="author">Brendan Rocks</h4>
             
-            <h4 class="date">2019-03-03</h4>
+            <h4 class="date">2019-03-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/brendan-r/boxr/blob/master/vignettes/boxr.Rmd"><code>vignettes/boxr.Rmd</code></a></small>
       <div class="hidden name"><code>boxr.Rmd</code></div>
@@ -87,7 +87,13 @@
 <div id="authorization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#authorization" class="anchor"></a>Authorization</h2>
-<p>To use boxr, you need to enable API access for your box.com account. The process is slightly annoying. You only need to do it once - it takes around 2 minutes.</p>
+<p>There are two steps you have to follow to get up-and-running with <strong>boxr</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Establish a Box application that will work with your Box account.</li>
+<li>Authenticate your Box account using your application.</li>
+</ol>
+<p>Once you have completed these steps, <code><a href="../reference/box_auth.html">box_auth()</a></code> should <em>just work</em>.</p>
+<p>To use <strong>boxr</strong>, you need to enable API access for your Box account. The process is slightly annoying. You only need to do it once - it takes around 2 minutes.</p>
 <div id="authorizing-from-a-local-computer" class="section level3">
 <h3 class="hasAnchor">
 <a href="#authorizing-from-a-local-computer" class="anchor"></a>Authorizing from a local computer</h3>

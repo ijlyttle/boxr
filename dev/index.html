@@ -95,28 +95,28 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"boxr"</span>)</a></code></pre></div>
 <p>If you’d like to download the development version from GitHub, use:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"brendan-r/boxr"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"r-box/boxr"</span>)</a></code></pre></div>
 <div id="documentation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h3>
 <p>The packge-documentation website is created and maintained using <a href="https://pkgdown.r-lib.org">pkgdown</a>. Upon the CRAN release for version 0.3.5, the documentation website will consist of:</p>
 <ul>
-<li>a <a href="https://ijlyttle.github.io/boxr/">CRAN-version site</a>
+<li>a <a href="https://r-box.github.io/boxr/">CRAN-version site</a>
 </li>
-<li>a <a href="https://ijlyttle.github.io/boxr/dev">development-version site</a>
+<li>a <a href="https://r-box.github.io/boxr/dev">development-version site</a>
 </li>
 </ul>
-<p>Until the CRAN release for version 3.5, the most-current version of the site will be the <a href="https://ijlyttle.github.io/boxr/dev">development-version site</a>.</p>
+<p>Until the CRAN release for version 3.5, the most-current version of the site will be the <a href="https://r-box.github.io/boxr/dev">development-version site</a>.</p>
 </div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>We have a <a href="https://ijlyttle.github.io/boxr/articles/boxr.html">Get-started article</a> that goes into more detail on interacting with your Box account using R.</p>
+<p>We have a <a href="https://r-box.github.io/boxr/articles/boxr.html">Get-started article</a> that goes into more detail on interacting with your Box account using R.</p>
 <div id="authorization" class="section level3">
 <h3 class="hasAnchor">
 <a href="#authorization" class="anchor"></a>Authorization</h3>
-<p>This can be the a little tricky to set up, but once it works, going forward, it should <em>just work</em>. As detailed in the <a href="https://ijlyttle.github.io/boxr/articles/boxr.html#authorization">article</a>, there are two use-cases:</p>
+<p>This can be the a little tricky to set up, but once it works, going forward, it should <em>just work</em>. As detailed in the <a href="https://r-box.github.io/boxr/articles/boxr.html#authorization">article</a>, there are two use-cases:</p>
 <ul>
 <li>authorizing from R your local computer</li>
 <li>authorizing from R on a remote server</li>
@@ -128,13 +128,13 @@
 <a href="#basic-operations" class="anchor"></a>Basic operations</h3>
 <ul>
 <li>
-<a href="https://ijlyttle.github.io/boxr/articles/boxr.html#accessing-box-directories-folders">Accessing Box directories</a>: <code><a href="reference/box_setwd.html">box_setwd()</a></code>, <code><a href="reference/box_setwd.html">box_getwd()</a></code>, <code><a href="reference/box_dir_create.html">box_dir_create()</a></code>, <code><a href="reference/box_ls.html">box_ls()</a></code>, <code><a href="reference/box_fetch.html">box_push()</a></code>, <code><a href="reference/box_fetch.html">box_fetch()</a></code>
+<a href="https://r-box.github.io/boxr/articles/boxr.html#accessing-box-directories-folders">Accessing Box directories</a>: <code><a href="reference/box_setwd.html">box_setwd()</a></code>, <code><a href="reference/box_setwd.html">box_getwd()</a></code>, <code><a href="reference/box_dir_create.html">box_dir_create()</a></code>, <code><a href="reference/box_ls.html">box_ls()</a></code>, <code><a href="reference/box_fetch.html">box_push()</a></code>, <code><a href="reference/box_fetch.html">box_fetch()</a></code>
 </li>
 <li>
-<a href="https://ijlyttle.github.io/boxr/articles/boxr.html#accessing-box-files">Accessing Box files</a>: <code><a href="reference/box_dl.html">box_ul()</a></code>, <code><a href="reference/box_dl.html">box_dl()</a></code>, <code><a href="reference/box_previous_versions.html">box_previous_versions()</a></code>, <code><a href="reference/box_add_description.html">box_add_description()</a></code>
+<a href="https://r-box.github.io/boxr/articles/boxr.html#accessing-box-files">Accessing Box files</a>: <code><a href="reference/box_dl.html">box_ul()</a></code>, <code><a href="reference/box_dl.html">box_dl()</a></code>, <code><a href="reference/box_previous_versions.html">box_previous_versions()</a></code>, <code><a href="reference/box_add_description.html">box_add_description()</a></code>
 </li>
 <li>
-<a href="https://ijlyttle.github.io/boxr/articles/boxr.html#searching-box">Searching Box</a>: <code><a href="reference/box_search.html">box_search()</a></code>
+<a href="https://r-box.github.io/boxr/articles/boxr.html#searching-box">Searching Box</a>: <code><a href="reference/box_search.html">box_search()</a></code>
 </li>
 </ul>
 </div>
@@ -143,10 +143,10 @@
 <a href="#advanced-operations" class="anchor"></a>Advanced operations</h3>
 <ul>
 <li>
-<a href="https://ijlyttle.github.io/boxr/articles/boxr.html#using-box-trash">Using Box trash</a>: <code><a href="reference/box_delete_file.html">box_delete_file()</a></code>, <code><a href="reference/box_delete_file.html">box_delete_folder()</a></code>, <code><a href="reference/box_delete_file.html">box_restore_file()</a></code>, <code><a href="reference/box_delete_file.html">box_restore_folder()</a></code>
+<a href="https://r-box.github.io/boxr/articles/boxr.html#using-box-trash">Using Box trash</a>: <code><a href="reference/box_delete_file.html">box_delete_file()</a></code>, <code><a href="reference/box_delete_file.html">box_delete_folder()</a></code>, <code><a href="reference/box_delete_file.html">box_restore_file()</a></code>, <code><a href="reference/box_delete_file.html">box_restore_folder()</a></code>
 </li>
 <li>
-<a href="https://ijlyttle.github.io/boxr/articles/boxr.html#interacting-with-your-r-session">Interacting with your R session</a>: <code><a href="reference/box_read.html">box_read()</a></code>, <code><a href="reference/box_write.html">box_write()</a></code>, <code><a href="reference/box_source.html">box_source()</a></code>, <code><a href="reference/box_save.html">box_save()</a></code>, <code><a href="reference/box_save.html">box_load()</a></code>
+<a href="https://r-box.github.io/boxr/articles/boxr.html#interacting-with-your-r-session">Interacting with your R session</a>: <code><a href="reference/box_read.html">box_read()</a></code>, <code><a href="reference/box_write.html">box_write()</a></code>, <code><a href="reference/box_source.html">box_source()</a></code>, <code><a href="reference/box_save.html">box_save()</a></code>, <code><a href="reference/box_save.html">box_load()</a></code>
 </li>
 </ul>
 </div>
@@ -166,7 +166,7 @@
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contributing" class="anchor"></a>Contributing</h2>
-<p>Always very welcome! If you’d like to submit a pull request for a new feature, ideally it would be documented, come with an addtion to <a href="https://ijlyttle.github.io/boxr/news/index.html">NEWS.md</a>, and have a test or two. This project has a standard <a href="https://ijlyttle.github.io/boxr/CONDUCT.html">Code of Conduct</a>.</p>
+<p>Always very welcome! If you’d like to submit a pull request for a new feature, ideally it would be documented, come with an addtion to <a href="https://r-box.github.io/boxr/news/index.html">NEWS.md</a>, and have a test or two. This project has a standard <a href="https://r-box.github.io/boxr/CONDUCT.html">Code of Conduct</a>.</p>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
