@@ -178,6 +178,8 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   # using repsonse from test-request, set the username
   options(boxr.username = cr$owned_by$login)
   
+  print(cr)
+  
   # Write the details to the Sys.env
   app_details <-
     stats::setNames(
