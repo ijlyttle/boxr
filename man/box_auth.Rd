@@ -66,7 +66,8 @@ for you to authorize to your Box app.
 \item a token file is written, according to the value of \code{cache}. The default
 behaviour is to write this file to \code{~/.boxr-oauth}.
 \item some global \code{\link[=options]{options()}} are set for your session to manage the token.
-\item environment variables \code{BOX_CLIENT_ID} and \code{BOX_CLIENT_SECRET} are set.
+\item environment variables \code{BOX_USER_ID}, \code{BOX_CLIENT_ID},
+and \code{BOX_CLIENT_SECRET} are set.
 \item if these environment variables have changed, and you have the
 \href{https://usethis.r-lib.org}{usethis} package installed, it will copy
 some text to your clipboard that you can paste into your \code{.Renviron} file.

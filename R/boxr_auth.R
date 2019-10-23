@@ -35,7 +35,8 @@
 #'
 #' - some global [options()] are set for your session to manage the token.
 #' 
-#' - environment variables `BOX_CLIENT_ID` and `BOX_CLIENT_SECRET` are set.
+#' - environment variables `BOX_USER_ID`, `BOX_CLIENT_ID`, 
+#'   and `BOX_CLIENT_SECRET` are set.
 #' 
 #' - if these environment variables have changed, and you have the 
 #'   [usethis](https://usethis.r-lib.org) package installed, it will copy 
@@ -76,6 +77,7 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   }
   
   # read environment variables
+  user_id_env <- Sys.getenv("BOX_USER_ID")
   client_id_env <- Sys.getenv("BOX_CLIENT_ID")
   client_secret_env <- Sys.getenv("BOX_CLIENT_SECRET")
   
@@ -178,25 +180,33 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   # using repsonse from test-request, set the username
   options(boxr.username = cr$owned_by$login)
   
-  print(cr)
+  user_id <- cr$owned_by$id
   
   # Write the details to the Sys.env
   app_details <-
     stats::setNames(
-      list(client_id, client_secret), 
-      c("BOX_CLIENT_ID", "BOX_CLIENT_SECRET")
+      list(user_id, client_id, client_secret), 
+      c("BOX_USER_ID", "BOX_CLIENT_ID", "BOX_CLIENT_SECRET")
     )
 
   do.call(Sys.setenv, app_details)
 
-  # if the authenitcation is new, and this is an interactive session,
+  # if the authentication is new, and this is an interactive session,
   # provide feedback on the .Renviron file
   is_new_client <- 
-    !identical(c(client_id, client_secret), c(client_id_env, client_secret_env))
+    !identical(
+      c(user_id, client_id, client_secret), 
+      c(user_id_env, client_id_env, client_secret_env)
+    )
 
   if (is_new_client && interactive()) {
     auth_message(
-      glue::glue("BOX_CLIENT_ID={client_id}\nBOX_CLIENT_SECRET={client_secret}")
+      glue::glue(
+        "BOX_USER_ID={user_id}",
+        "BOX_CLIENT_ID={client_id}",
+        "BOX_CLIENT_SECRET={client_secret}",
+        .sep = "\n"
+      )
     )
   }
   
