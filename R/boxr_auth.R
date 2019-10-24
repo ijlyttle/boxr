@@ -332,11 +332,9 @@ box_auth_service <- function(token_file = NULL, account_id = NULL) {
   assert_packages("jsonlite", "openssl", "jose")
   
   token_file_env <- Sys.getenv("BOX_TOKEN_FILE")
-  if (is_void(token_file_env)) {
-    token_file_env <- NULL
-  }
-  
-  token_file <- token_file %||% token_file_env %||% "~/.boxr-auth/token.json"
+
+  # %|0|% uses is_void()
+  token_file <- token_file %|0|% token_file_env %|0|% "~/.boxr-auth/token.json"
   
   token_file_path <- fs::path_real(token_file)
   if (!fs::file_exists(token_file_path)) {
