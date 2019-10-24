@@ -10,7 +10,7 @@
 #' @param can_view_path `logical` indicates to allow the collaborator to navigate 
 #'   parent-folders at Box.
 #' 
-#' @return ??
+#' @return Invisible `list()` containing collaboration-information.
 #' @export
 #' 
 box_dir_invite <- function(dir_id, account_id = box_user_id(), login = NULL,
@@ -77,5 +77,37 @@ box_invite <- function(item, accessible_by, role, can_view_path = FALSE) {
   )
   
   # call the API
+  resp <- httr::POST(
+    "https://api.box.com/2.0/collaborations",
+    get_token(),
+    encode = "multipart",
+    body = 
+      jsonlite::toJSON(
+        list(
+          item = item, 
+          accessible_by = accessible_by, 
+          role = role, 
+          can_view_path = can_view_path
+        ),
+        auto_unbox = TRUE
+      )
+  ) 
   
+  httr::stop_for_status(resp, task = "invite collaborator")
+
+  # TODO: create an S3 class
+  resp <- httr::content(resp)
+  
+  # feedback
+  message(
+    glue::glue(
+      "{resp$created_by$name} ({resp$created_by$login}) has invited",
+      "{resp$accessible_by$name} ({resp$accessible_by$login})",
+      "to collaborate on {resp$item$type} `{resp$item$name}`",
+      "as {resp$role}.",
+      .sep = " "
+    )
+  )
+  
+  invisible(resp)
 }

@@ -21,7 +21,7 @@ box_dir_invite(dir_id, account_id = box_user_id(), login = NULL,
 parent-folders at Box.}
 }
 \value{
-??
+Invisible \code{list()} containing collaboration-information.
 }
 \description{
 default to lowest permissions
