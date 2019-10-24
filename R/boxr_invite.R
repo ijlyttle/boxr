@@ -24,13 +24,13 @@ box_dir_invite <- function(dir_id, account_id = box_user_id(), login = NULL,
   item <-
     list(
       type = "folder", # imagine box_file_invite()
-      id = dir_id
+      id = as.character(dir_id)
     )
   
   accessible_by <-
     list(
-      type = "user", #  imagine inviting group
-      id = account_id,
+      type = "user", #  imagine inviting a group
+      id = as.character(account_id),
       login = login
     )
   
