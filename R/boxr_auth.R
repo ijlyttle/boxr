@@ -322,32 +322,43 @@ box_auth_on_attach <- function(auth_on_attach = FALSE) {
 #' Authenticate to Box (service)
 #' 
 #' Alternative option for accessing the Box API. Useful on servers.
-#' @param token_file `character` path to JSON config file.
+#' @param token_file `character`, path to JSON token-file 
+#' @param token_text `character`, JSON text. If this is provided, 
+#'   `token_file` is ignored.
 #' @param account_id `character`, the ID for the account to use. 
 #'
 #' @export
 #' 
-box_auth_service <- function(token_file = NULL, account_id = NULL) {
+box_auth_service <- function(token_file = NULL, token_text = NULL, account_id = NULL) {
   
   assert_packages("jsonlite", "openssl", "jose")
   
   token_file_env <- Sys.getenv("BOX_TOKEN_FILE")
 
-  # %|0|% uses is_void()
-  token_file <- token_file %|0|% token_file_env %|0|% "~/.boxr-auth/token.json"
-  
-  token_file_path <- fs::path_real(token_file)
-  if (!fs::file_exists(token_file_path)) {
-    stop(
-      "box.com authorization not possible; ",
-      glue::glue("token_file `{token_file}`: not found\n"),
-      "See ?box_auth_service for help.",
-      call. = FALSE
-    )
+  if (is.null(token_text)) {
+
+    # %|0|% uses is_void()
+    token_file <- token_file %|0|% token_file_env %|0|% "~/.boxr-auth/token.json"
+    
+    token_file_path <- fs::path_real(token_file)
+    if (!fs::file_exists(token_file_path)) {
+      stop(
+        "box.com authorization not possible; ",
+        glue::glue("token_file `{token_file}`: not found\n"),
+        "See ?box_auth_service for help.",
+        call. = FALSE
+      )
+    }
+    
+    token_text <- 
+      glue::glue_collapse(
+        readLines(token_file_path, warn = FALSE),
+        sep = ""
+      )
   }
 
-  config <- jsonlite::fromJSON(token_file_path)
-
+  config <- jsonlite::fromJSON(token_text) 
+  
   account_id <- account_id %||% config$enterpriseID
   
   box_sub_type <- 
@@ -417,12 +428,10 @@ box_auth_service <- function(token_file = NULL, account_id = NULL) {
   invisible(NULL)
 }
 
-#' Is a token available?
-#' 
-#' @description
-#' 
-#' Helper for TravisCI; modeled after `googledrive::drive_has_token()`.
-#' 
+# Is a token available?
+# 
+# Helper for TravisCI; modeled after `googledrive::drive_has_token()`.
+# 
 has_jwt_token <- function() {
   inherits(getOption("boxr_token_jwt"), "request")
 }
