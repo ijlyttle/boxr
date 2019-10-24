@@ -19,6 +19,8 @@ matrix:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
       skip_cleanup: true
+  - r: release
+    env: BOXR_PASSWORD=''
   - r: oldrel
     env: BOXR_PASSWORD=''
 
@@ -33,9 +35,9 @@ r_github_packages:
 after_success:
   - Rscript -e 'library(covr);coveralls()'
 
-branches:
-  only:
-    - master
+# branches:
+#  only:
+#    - master
     
 addons:
   apt:
