@@ -4,10 +4,14 @@
 \alias{box_auth_service}
 \title{Authenticate to Box (service)}
 \usage{
-box_auth_service(token_file = NULL, account_id = NULL)
+box_auth_service(token_file = NULL, token_text = NULL,
+  account_id = NULL)
 }
 \arguments{
-\item{token_file}{\code{character} path to JSON config file.}
+\item{token_file}{\code{character}, path to JSON token-file}
+
+\item{token_text}{\code{character}, JSON text. If this is provided,
+\code{token_file} is ignored.}
 
 \item{account_id}{\code{character}, the ID for the account to use.}
 }
