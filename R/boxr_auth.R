@@ -421,7 +421,7 @@ box_auth_service <- function(token_file = NULL, account_id = NULL) {
 #' 
 #' @description
 #' 
-#' Helper for TravisCI; modeled after \code{\link[googledrive]{drive_has_token}()}.
+#' Helper for TravisCI; modeled after `googledrive::drive_has_token()`.
 #' 
 has_jwt_token <- function() {
   inherits(getOption("boxr_token_jwt"), "request")
