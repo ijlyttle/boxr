@@ -322,39 +322,39 @@ box_auth_on_attach <- function(auth_on_attach = FALSE) {
 #' Authenticate to Box (service)
 #' 
 #' Alternative option for accessing the Box API. Useful on servers.
-#' @param user_id `character`, the user ID for the account to use. 
-#' @param config_file `character` path to JSON config file.
+#' @param token_file `character` path to JSON config file.
+#' @param account_id `character`, the ID for the account to use. 
 #'
 #' @export
 #' 
-box_auth_jwt <- function(user_id = NULL, config_file = NULL) {
+box_auth_service <- function(token_file = NULL, account_id = NULL) {
   
   assert_packages("jsonlite", "openssl", "jose")
   
-  user_id_env <- Sys.getenv("BOX_USER_ID")
-  config_file_env <- Sys.getenv("BOX_CONFIG_FILE")
-  
-  # if no input, look to .Renviron `user_id` and `config_file`
-  if (is_void(user_id) && !is_void(user_id_env)) {
-    message("Using `BOX_USER_ID` from environment")
-    user_id <- user_id_env
+  token_file_env <- Sys.getenv("BOX_TOKEN_FILE")
+  if (is_void(token_file_env)) {
+    token_file_env <- NULL
   }
   
-  if (is_void(config_file) && !is_void(config_file_env)) {
-    message("Using `BOX_CONFIG_FILE` from environment")
-    config_file <- config_file_env 
-  }
+  token_file <- token_file %||% token_file_env %||% "~/.boxr-auth/token.json"
   
-  if (is_void(user_id) || is_void(config_file)) {
+  token_file_path <- fs::path_real(token_file)
+  if (!fs::file_exists(token_file_path)) {
     stop(
       "box.com authorization not possible; ",
-      "user_id and/or config_file not found\n",
-      "See ?box_auth_jwt for help."
+      glue::glue("token_file `{token_file}`: not found\n"),
+      "See ?box_auth_service for help.",
+      call. = FALSE
     )
   }
+
+  config <- jsonlite::fromJSON(token_file_path)
+
+  account_id <- account_id %||% config$enterpriseID
   
-  config <- jsonlite::fromJSON(config_file)
-  
+  box_sub_type <- 
+    ifelse(identical(account_id, config$enterpriseID), "enterprise", "user")
+    
   # de-crypt the key
   key <- openssl::read_key(
     config$boxAppSettings$appAuth$privateKey,
@@ -365,8 +365,8 @@ box_auth_jwt <- function(user_id = NULL, config_file = NULL) {
   auth_url <- "https://api.box.com/oauth2/token"
   claim <- jose::jwt_claim(
     iss = config$boxAppSettings$clientID,
-    sub = as.character(user_id), # maybe don't need this?
-    box_sub_type = "user",
+    sub = as.character(account_id), # maybe don't need this? (can't hurt)
+    box_sub_type = box_sub_type,
     aud = auth_url,
     jti = openssl::base64_encode(openssl::rand_bytes(16)),
     exp = unclass(Sys.time()) + 45
@@ -407,13 +407,12 @@ box_auth_jwt <- function(user_id = NULL, config_file = NULL) {
   
   # if the authentication is new, and this is an interactive session,
   # provide feedback on the .Renviron file
-  is_new_jwt <-
-    !identical(c(user_id, config_file), c(user_id_env, config_file_env))
+  is_new_jwt <- !identical(token_file, token_file_env)
 
   # including fs::file_exists() to prevent printing contents of the file 
-  if (is_new_jwt && interactive() && fs::file_exists(config_file)) {
+  if (is_new_jwt && interactive()) {
     auth_message(
-      glue::glue("BOX_USER_ID={user_id}\nBOX_CONFIG_FILE={config_file}")
+      glue::glue("BOX_TOKEN_FILE={token_file}")
     )
   }
   
