@@ -2,7 +2,7 @@
 % Please edit documentation in R/boxr_auth.R
 \name{box_auth}
 \alias{box_auth}
-\title{Authenticate to Box (interactive)}
+\title{Authenticate to Box (interactive-app)}
 \usage{
 box_auth(client_id = NULL, client_secret = NULL, interactive = TRUE,
   cache = "~/.boxr-oauth", write.Renv, ...)
@@ -29,8 +29,6 @@ A string means use the specified path as the cache file.}
 }
 \value{
 \code{invisible(NULL)}, called for side-effects.
-
-See \code{\link[httr:oauth2.0_token]{httr::oauth2.0_token()}} for details.
 }
 \description{
 There are two common use-cases for \code{box_auth()}:
@@ -76,5 +74,6 @@ some text to your clipboard that you can paste into your \code{.Renviron} file.
 }
 
 \seealso{
+\code{\link[=box_auth_service]{box_auth_service()}} for authenticating to service-apps,
 \code{\link[httr:oauth2.0_token]{httr::oauth2.0_token()}} for details on how tokens are handled
 }
