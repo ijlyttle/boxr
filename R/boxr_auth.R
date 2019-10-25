@@ -549,4 +549,11 @@ box_user_id <- function() {
   user_id
 }
 
+# internal function for development
+box_auth_develop <- function() {
+  raw <- gargle:::secret_read("boxr", "boxr-testing.json")
+  text <- rawToChar(raw)
+  box_auth_service(token_text = text)
+}
+
 
