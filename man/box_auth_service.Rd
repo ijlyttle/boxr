@@ -35,10 +35,10 @@ the path to the JWT file, or as \code{token_text}, the text of the JWT.
 Using JWT-authenitcation is more convienient than using standard OAuth2
 authentication, as you do not have to go through the "OAuth Dance". This
 convenience brings additional considerations because the JWT file gives
-its bearer uninhibited access to aynthing the Box service-app can access:
+its bearer uninhibited access to anything the Box service-app can access:
 \itemize{
 \item give the service-account access to as little information as you need it
-to have, e.g a single folder.
+to have, e.g. a single folder.
 \item keep the JWT file secure.
 }
 }

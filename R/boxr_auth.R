@@ -76,7 +76,6 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   }
   
   # read environment variables
-  user_id_env <- Sys.getenv("BOX_USER_ID")
   client_id_env <- Sys.getenv("BOX_CLIENT_ID")
   client_secret_env <- Sys.getenv("BOX_CLIENT_SECRET")
   
@@ -184,8 +183,8 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   # Write the details to the Sys.env
   app_details <-
     stats::setNames(
-      list(user_id, client_id, client_secret), 
-      c("BOX_USER_ID", "BOX_CLIENT_ID", "BOX_CLIENT_SECRET")
+      list(client_id, client_secret), 
+      c("BOX_CLIENT_ID", "BOX_CLIENT_SECRET")
     )
 
   do.call(Sys.setenv, app_details)
@@ -194,14 +193,13 @@ box_auth <- function(client_id = NULL, client_secret = NULL,
   # provide feedback on the .Renviron file
   is_new_client <- 
     !identical(
-      c(user_id, client_id, client_secret), 
-      c(user_id_env, client_id_env, client_secret_env)
+      c(client_id, client_secret), 
+      c(client_id_env, client_secret_env)
     )
 
   if (is_new_client && interactive()) {
     auth_message(
       glue::glue(
-        "BOX_USER_ID={user_id}",
         "BOX_CLIENT_ID={client_id}",
         "BOX_CLIENT_SECRET={client_secret}",
         .sep = "\n"
@@ -509,6 +507,7 @@ test_request <- function() {
   
   name <- cr$owned_by$name
   login <- cr$owned_by$login
+  id <- cr$owned_by$id
   
   if (has_oauth_token()) {
     method <- "OAuth2"
@@ -519,7 +518,7 @@ test_request <- function() {
   }
   
   message(
-    glue::glue("boxr: Authenticated using {method} as {name} ({login})")
+    glue::glue("boxr: Authenticated using {method} as {name} ({login}, id: {id})")
   )
   
   cr
