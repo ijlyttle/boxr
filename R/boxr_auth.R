@@ -319,7 +319,6 @@ box_auth_on_attach <- function(auth_on_attach = FALSE) {
 #' Authenticate to Box (service-app)
 #' 
 #' @description 
-#' 
 #' How you authenticate to Box depends on how the Box-app through which you
 #' connect. A Box service-app can be useful for unattended jobs that need
 #' access to only a limited part of Box, e.g. one folder.
@@ -364,8 +363,9 @@ box_auth_on_attach <- function(auth_on_attach = FALSE) {
 #' 
 #' - a message is printed to the console.  
 #' 
-#' 
-#' @param token_file `character`, path to JSON token-file. 
+#' @param token_file `character`, path to JSON token-file. If not provided,
+#'   the function will look for an environment variable `BOX_TOKEN_FILE`, if 
+#'   that is not there, it will try `~/.boxr-auth/token.json`.
 #' @param token_text `character`, JSON text. If this is provided, 
 #'   `token_file` is ignored.
 #' @param account_id `character`, the ID for the account to use; default is

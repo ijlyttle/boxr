@@ -37,19 +37,24 @@ if (dir_exists(dir_target_figures)) {
 
 dir_copy(dir_source, dir_target)
 ```
+To interact with the Box API, i.e. to use `boxr`, requires two things:
 
-To interact programatically with the Box API, i.e. to use `boxr`, two things have to be done:
+1. A Box-app has to be set up. If an organization administers your Box account, such an app may already exist.
+2. You have to authenticate to the Box-app.
 
-1. A Box application (app) has to be set up.
-2. You have to authenticate to the app.
+You can think of a Box-app as the door through which `boxr` functions access Box. There are two different types of apps, described in the [apps overview-vignette](./boxr-apps.html). 
 
-There are two different types of apps, contrasted in this [overview vignette](./boxr-apps.html). In this vignette, we discuss the service-app, which is designed for unattended use, e.g. generating a daily report. The service authenticates to this app using a JWT (JSON) token, then accesses Box through this app, with the privileges associated to the app (which should be minimal).
+In this vignette, we discuss the service-app, which is designed for unattended use, e.g. generating a daily report. The service authenticates to this app using a JWT (JSON) token, then accesses Box through this app, with the privileges associated to the app (which should be minimal).
 
 How you use this vignette depends on your Box set-up; we cover these situations:
 
-1. Someone in your Box organization has already created the service-app for your purpose. This means that you have been issued a JSON file which contains the JWT authentication-token. If that's the case, you need only the first section of this vignette, focused on users.
+1. Someone in your Box organization has already created the service-app for your purpose. This means that you have been issued a JSON file which contains the JWT authentication-token. 
 
-2. You have to create a Box service-app, meaning you you have to create the JWT authentication-token. In that case, you will need the second section of this vignette, followed by the first section.
+   If so, you need to start with the [section](#use) focused on users. 
+
+2. You need to associate the app's service-account with a folder that a user-account can access. There are a couple of ways to do this, these are discussed in the [workflow section](#workflow).
+
+3. You have to create a Box service-app, meaning you you have to create the JWT authentication-token. This is covered in the [app-creation section](#create)
 
 Please keep in mind that if your Box account is controlled by an organization, e.g. you use Box at work, the creation and use of Box apps may be controlled by your Box-admin team. If this is the case, you might refer them to this vignette as a part of a request to have an app created.
 
@@ -63,6 +68,13 @@ Becasue of how Box structured these apps, they can be capable of performing acti
 
 If you are setting a JWT app up for a personal account, this is not really an issue. But if you are doing this for a company account, this means the app *could* access sensitive information from another user account (eg payroll, HR records, etc.) if it was provided with the relevant user ID and a valid private key file. Note: Box provisions user IDs by time the account was created, so if a batch of accounts was created together (say when the enterprise account was initialized) they will have sequential user ID numbers.
 
+## Using a Service App {#use}
+
+### Transferring token to RStudio Server
+
+## Collaboration Workflows {#workflow}
+
+## Creating a Service App {#create}
 
 **1. 'Create New App'**
 
