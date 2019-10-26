@@ -50,31 +50,82 @@ How you use this vignette depends on your Box set-up; we cover these situations:
 
 1. Someone in your Box organization has already created the service-app for your purpose. This means that you have been issued a JSON file which contains the JWT authentication-token. 
 
-   If so, you need to start with the [section](#use) focused on users. 
+   If so, you can start with the [section](#use) focused on users. 
 
-2. You need to associate the app's service-account with a folder that a user-account can access. There are a couple of ways to do this, these are discussed in the [workflow section](#workflow).
+2. You may need to associate the app's service-account with a folder that your user-account can access. There are a couple of ways to do this, discussed in the [workflow section](#workflow).
 
-3. You have to create a Box service-app, meaning you you have to create the JWT authentication-token. This is covered in the [app-creation section](#create)
+3. You have to create a Box service-app, meaning you have to (or someone has to) create the JWT authentication-token. This is covered in the [app-creation section](#create).
 
-Please keep in mind that if your Box account is controlled by an organization, e.g. you use Box at work, the creation and use of Box apps may be controlled by your Box-admin team. If this is the case, you might refer them to this vignette as a part of a request to have an app created.
+   If your Box account is controlled by an organization, e.g. you use Box at work, the creation and use of Box apps may be controlled by your Box-admin team. If this is the case, you might refer them to this vignette as a part of a request to have an app created or approved.
 
 ```{r}
-library(boxr)
+library("boxr")
 ```
 
-## Stashing here for now
+## Using a Service App {#use}
+
+A service app is often created in support of a single task, e.g. run a set of daily-reports. Because a service-app acts of behalf of the system itself, and because the tokens are portable, it is a common pracatice to limit the scope of *a* service-app to *a* single folder or small set of folders. Thus, you might be dealing with multiple service-apps if you are working on multiple projects.
+
+This is why we encourage you to create a directory in your *home* directory, called `.boxr-auth`, to contain these  tokens.
+
+```r
+library("fs")
+
+# mode 700 restricts access to your account
+dir_create("~/.boxr-auth", mode = 700)
+```
+
+When you receive JWT (token) file for your first service-app, save it to your local computer as `~/.boxr-auth/token.json`.
+
+To authenticate to Box using this token:
+
+```r
+box_auth_service()
+```
+
+```
+boxr: Authenticated using OAuth2 (JWT) as boxr-jwt-ijl (AutomationUser_868610_9SFx0Bq15D@boxdevedition.com, id: 9862360558)
+```
+
+The authentication function `box_auth_service()` takes `token_file` as an argument. Its default is the value of the environment variable `BOX_TOKEN_FILE`; if that does not exist, the default becomes `~/.boxr-auth/token.json`.
+
+In a (near) future version of boxr, we plan to make it easier to work interactively with multiple service accounts. 
+
+### Transferring token to RStudio Server
+
+Service-authentication be much easier to use than interactive-authentication if you are using a remote machine, e.g. RStudio Server.
+
+As always, keep security in mind. Presumably, if you are using RStudio Server, it is running on a computer over which you (or your institution) has administrative control. This presents a different set of security considerations from the case where you're using RStudio Cloud, where neither you nor your institution (unless you work for RStudio) has administrative control of the machine. Keep in mind that the token-file allows its bearer the same Box privileges as the service account on the files/folders it has access to.
+
+To transfer a token from your local machine, first create the `.boxr-auth` directory in your **home** directory on the *remote* machine:
+
+```r
+library("fs")
+
+# mode 700 restricts access to your account
+dir_create("~/.boxr-auth", mode = 700)
+```
+
+Then, in the RStudio Server (or Cloud) session, in the *Files* pane (see figure below):
+    - go to your token directory: hit the `...` at the right edge, then specify `~/.boxr-auth` for the directory.
+    - hit the upload button, and specify the token file on your local computer (you need to be able to view "hidden" files).
+
+![Upload to RStudio Server/Cloud](figures/rstudio_cloud.png){width=100%}
+
+If you are using RStudio Cloud, be mindful to upload the token to your **home** directory, which is nominally private to your account, rather than the **project** directory, which may be shared. 
+
+Once the token-file is uploaded, you should be able to run `boxr::box_auth_service()` on the remote computer and it should *just work*, like on your local computer.
+
+## Collaboration Workflows {#workflow}
+
+## Creating a Service App {#create}
+
+### Stashing here for now
 
 Becasue of how Box structured these apps, they can be capable of performing actions as *any non-admin user* within its associated enterprise. Currently there is [no way to restrict app abilities/access to only specific users](https://community.box.com/t5/Platform-and-Development-Forum/Restrict-service-account-permissions-to-specific-users/td-p/35984). Although `boxr` provides functions for file-based actions, rather than user-based actions (like creating/deleting users), if your JWT token becomes compromised, there is nothing stopping the token from being with other tools.
 
 If you are setting a JWT app up for a personal account, this is not really an issue. But if you are doing this for a company account, this means the app *could* access sensitive information from another user account (eg payroll, HR records, etc.) if it was provided with the relevant user ID and a valid private key file. Note: Box provisions user IDs by time the account was created, so if a batch of accounts was created together (say when the enterprise account was initialized) they will have sequential user ID numbers.
 
-## Using a Service App {#use}
-
-### Transferring token to RStudio Server
-
-## Collaboration Workflows {#workflow}
-
-## Creating a Service App {#create}
 
 **1. 'Create New App'**
 
