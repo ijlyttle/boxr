@@ -118,6 +118,26 @@ Once the token-file is uploaded, you should be able to run `boxr::box_auth_servi
 
 ## Collaboration Workflows {#workflow}
 
+If you are using a service-app (acting as a service-account), you may also want to interact with the same files using your interactive-app (acting as your user-account). By default, a service-account has access to only its file-system, and your user-account has access only to its (differnent) file-system. To solve this problem, you can invite your service-account to collaborate on a folder in your user file-system, or you can invite your user-account to collaborate on a folder in the service file-system. In either case, you can use the function `box_dir_invite()`.
+
+Which way you go depends on the purpose of the service. 
+
+1. If the service is strongly associated with a particular user, e.g. "Nate's service app", you (Nate) way wish to invite your service-app to collaborate on your (Nate's) folders.
+
+2. If the service is associated with an ongoing task, e.g "daily-report app", it may be best for the service to keep the files in its filesystem (Nate might win the lottery someday). If Nate wants access to the files, the service-app may "wish" to invite Nate to collaborate on its folders.
+
+To use `box_dir_invite()`, you need four things:
+
+1. To be authenticated using the "host" account. This can be either the service-account or your user-account.
+
+2. To know the `dir_id` of the folder you want to share.
+
+3. To know the `account_id` of the account you are inviting.
+
+4. To know the `role` (permissions) you would like the collaborator to have. 
+
+
+
 ## Creating a Service App {#create}
 
 ### Stashing here for now
