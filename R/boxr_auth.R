@@ -465,17 +465,6 @@ box_auth_service <- function(token_file = NULL, token_text = NULL,
   
   options(boxr.username = cr$owned_by$login)
   
-  # if the authentication is new, and this is an interactive session,
-  # provide feedback on the .Renviron file
-  is_new_jwt <- !identical(token_file, token_file_env)
-
-  # including fs::file_exists() to prevent printing contents of the file 
-  if (is_new_jwt && interactive()) {
-    auth_message(
-      glue::glue("BOX_TOKEN_FILE={token_file}")
-    )
-  }
-  
   invisible(NULL)
 }
 
